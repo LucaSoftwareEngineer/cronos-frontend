@@ -27,24 +27,38 @@
                 </tr>
             </thead>
             <tbody>
-                @for (presenza of presenze(); track $index) {
-                <tr class="bg-neutral-primary-soft border-b  border-default">
-                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        {{presenza.dipendente.nome}} {{presenza.dipendente.cognome}}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{presenza.dipendente.ruolo.descrizione}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{presenza.dataIngresso.substring(0,10)}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{presenza.dataIngresso.substring(11,16)}}
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                        <a class="cursor-pointer font-medium text-fg-brand hover:underline">ESCI</a>
-                    </td>
-                </tr>
+                @if (presenze()
+                    .filter(p => p.dataUscita != null)
+                    .filter(p => p.dataUscita != '')
+                    .length != presenze().length
+                ) {
+                    @for (presenza of presenze(); track $index) {
+                        @if (presenza.dataUscita == "" || presenza.dataUscita == null) {
+                            <tr class="bg-neutral-primary-soft border-b  border-default">
+                                <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                                    {{presenza.dipendente.nome}} {{presenza.dipendente.cognome}}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{presenza.dipendente.ruolo.descrizione}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{presenza.dataIngresso.substring(0,10)}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{presenza.dataIngresso.substring(11,16)}}
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <a (click)="exit(presenza.id)" class="cursor-pointer font-medium text-fg-brand hover:underline">ESCI</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                } @else {
+                    <tr class="bg-neutral-primary-soft border-b  border-default">
+                        <td scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                            Non ci sono dipendenti in azienda...
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
