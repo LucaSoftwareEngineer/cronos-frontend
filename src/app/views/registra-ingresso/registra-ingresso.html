@@ -1,2 +1,68 @@
+<div class="pt-25 pl-15 pr-15">
 
-<p>registra-ingresso works!</p>
+    <div class="p-10 relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+
+        <div class="border-b-[1px] mb-6 pb-3 border-gray-200 text-gray-400">
+            Registrazione ingresso
+        </div>
+
+        @if (avvisoNuovoDipendente) {
+            <div id="toast-warning" class="w-full p-4 mb-4 text-sm text-fg-warning rounded-base bg-warning-soft border border-warning-subtle" role="alert">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                    <svg class="w-4 h-4 shrink-0 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                    <span class="sr-only">Info</span>
+                    <h3 class="font-semibold">Attenzione: Per i nuovi dipendenti</h3>
+                    </div>
+                    <button (click)="mostraNascondiAvviso()" type="button" data-dismiss-target="#toast-warning" aria-label="Close" class="cursor-pointer ms-auto -mx-1.5 -my-1.5 bg-warning-soft text-fg-warning-strong rounded focus:ring-2 focus:ring-warning-medium p-1.5 hover:bg-warning-medium inline-flex items-center justify-center h-8 w-8">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
+                    </button>
+                </div>
+                <div class="mt-2 mb-4">
+                    Se sei un nuovo dipendente per poter procedere alla registrazione dell'ingresso dei prima registrarti nel sistema.
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button (click)="vaiInRegistraNuovoDipendente()" type="button" class="cursor-pointer inline-flex items-center text-white bg-warning box-border border border-transparent hover:bg-warning-strong focus:ring-4 focus:ring-warning-medium shadow-xs font-medium leading-5 rounded-base text-xs px-3 py-1.5 focus:outline-none">
+                        <svg class="w-3.5 h-3.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/><path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+                        Sono un nuovo dipendente
+                    </button>
+                    <button (click)="mostraNascondiAvviso()" type="button" data-dismiss-target="#toast-warning" class="cursor-pointer inline-flex items-center text-fg-warning-subtle bg-transparent box-border border border-warning hover:bg-warning-strong hover:border-warning-strong hover:text-white focus:ring-4 focus:ring-warning-medium shadow-xs font-medium leading-5 rounded-base text-xs px-3 py-1.5 focus:outline-none">
+                        Non sono un nuovo dipendente
+                    </button>
+                </div>
+            </div>
+        } @else {
+            <a (click)="mostraNascondiAvviso()" class="cursor-pointer text-orange-800 text-[14px]">
+                <div class="float-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                    </svg>
+                </div>
+                <div class="float-left">
+                    &nbsp;
+                    <i>Attenzione: c'è un avviso per i nuovi dipendenti</i>
+                </div>
+            </a>
+            <br>
+        }
+
+        <br>
+        
+        <div>
+            <div class="relative z-0 w-[50%] mb-5 group">
+                <label for="dipendente" class="block mb-2.5 text-sm font-medium text-heading">Dipendente</label>
+                <select [(ngModel)]="dipendente" id="dipendente" class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body">
+                    <option value="0" selected>Seleziona un dipendente</option>
+                    @for (dipendente of dipendenti(); track $index) {
+                        <option [value]="dipendente.id">{{dipendente.nome + " " + dipendente.cognome}}</option>
+                    }
+                </select>
+            </div>
+            <button (click)="enter()" type="button" class="cursor-pointer text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Entra</button>
+
+        </div>
+    </div>
+    
+</div>
