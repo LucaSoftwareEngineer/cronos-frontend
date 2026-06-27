@@ -1,0 +1,33 @@
+<div class="pt-25 pl-15 pr-15">
+
+    <div class="p-10 relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+        
+        <div class="border-b-[1px] mb-6 pb-3 border-gray-200 text-gray-400">
+            Registrazione dipendente
+        </div>
+
+        <div>
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full mb-5 group">
+                    <label for="nome" class="block mb-2.5 text-sm font-medium text-heading">Nome</label>
+                    <input [(ngModel)]="nome" type="text" id="nome" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="Inserire il proprio nome..." required />
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                    <label for="cognome" class="block mb-2.5 text-sm font-medium text-heading">Cognome</label>
+                    <input [(ngModel)]="cognome" type="text" id="cognome" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="Inserire il proprio cognome..." required />
+                </div>
+            </div>
+            <div class="relative z-0 w-full mb-5 group">
+                <label for="ruolo" class="block mb-2.5 text-sm font-medium text-heading">Ruolo</label>
+                <select [(ngModel)]="ruolo" id="ruolo" class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body">
+                    <option value="0" selected>Seleziona il tuo ruolo</option>
+                    @for (ruolo of ruoli(); track $index) {
+                        <option value="{{ruolo.id}}">{{ruolo.descrizione}}</option>
+                    }
+                </select>
+            </div>
+            <button (click)="add()" type="button" class="cursor-pointer text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Registrati</button>
+        </div>
+    </div>
+    
+</div>
