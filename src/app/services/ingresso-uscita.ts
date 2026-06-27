@@ -16,8 +16,12 @@ export class IngressoUscita {
     return this.http.get<IngressoUscitaResponse[]>(`${environment.apiUrl}/api/ingresso/uscita/list`);
   }
 
-  update(request: IngressoUscitaRequest): Observable<IngressoUscitaResponse[]> {
-    return this.http.put<IngressoUscitaResponse[]>(`${environment.apiUrl}/api/ingresso/uscita/update`, request);
+  add(request: IngressoUscitaRequest): Observable<IngressoUscitaResponse> {
+    return this.http.post<IngressoUscitaResponse>(`${environment.apiUrl}/api/ingresso/uscita/add`, request);
+  }
+
+  update(request: IngressoUscitaRequest): Observable<IngressoUscitaResponse> {
+    return this.http.put<IngressoUscitaResponse>(`${environment.apiUrl}/api/ingresso/uscita/update`, request);
   }
 
 }
