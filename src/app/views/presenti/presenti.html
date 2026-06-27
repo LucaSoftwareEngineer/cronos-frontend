@@ -1,1 +1,53 @@
-<p>presenti works!</p>
+<div class="pt-25 pl-15 pr-15">
+
+    <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+        <table class="w-full text-sm text-left rtl:text-right text-body">
+            <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
+                <tr>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        Nome e cognome
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        <div class="flex items-center">
+                            Ruolo
+                        </div>
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        <div class="flex items-center">
+                            Data Ingresso
+                        </div>
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        <div class="flex items-center">
+                            Ora Ingresso
+                        </div>
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (presenza of presenze(); track $index) {
+                <tr class="bg-neutral-primary-soft border-b  border-default">
+                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                        {{presenza.dipendente.nome}} {{presenza.dipendente.cognome}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{presenza.dipendente.ruolo.descrizione}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{presenza.dataIngresso.substring(0,10)}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{presenza.dataIngresso.substring(11,16)}}
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <a class="cursor-pointer font-medium text-fg-brand hover:underline">ESCI</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
