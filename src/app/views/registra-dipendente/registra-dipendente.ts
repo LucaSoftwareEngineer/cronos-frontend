@@ -5,11 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Dipendente } from '../../services/dipendente';
 import { DipendenteRequest } from '../../dto/request/DipendenteRequest';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-registra-dipendente',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './registra-dipendente.html',
   styleUrl: './registra-dipendente.css',
 })
